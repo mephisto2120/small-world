@@ -1,1 +1,8 @@
 .idea/
+
+### Gradle ###
+.gradle
+build/
+
+### Gradle Patch ###
+**/build/
