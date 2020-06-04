@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: mephisto2120/small-world-server
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MSSQLUSER
+              value: SA
+            - name: MSSQLHOST
+              value: mssql-cluster-ip-service
+            - name: MSSQLPORT
+              value: "1433"
+            - name: MSSQLDATABASE
+              value: msdb
+            - name: MSSQLPASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: mssql
+                    key: SA_PASSWORD
