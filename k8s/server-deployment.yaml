@@ -27,7 +27,7 @@ spec:
             - name: MSSQLDATABASE
               value: msdb
             - name: MSSQLPASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: mssql
-                    key: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: SA_PASSWORD
