@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.tryton.small-world</groupId>
-		<artifactId>sm-parent-pom</artifactId>
-		<version>0.0.1-SNAPHOT</version>
-	</parent>
-	<groupId>com.tryton.small-world</groupId>
-	<artifactId>server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>server</name>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.tryton.small-world</groupId>
+        <artifactId>sm-parent-pom</artifactId>
+        <version>0.0.1-SNAPHOT</version>
+    </parent>
+    <groupId>com.tryton.small-world</groupId>
+    <artifactId>server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>server</name>
 
-	<properties>
-		<java.version>8</java.version>
-		<spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+    <properties>
+        <java.version>8</java.version>
+        <spring-boot.version>2.2.9.RELEASE</spring-boot.version>
         <spring.version>5.2.8.RELEASE</spring.version>
-        <springfox.version>3.0.0</springfox.version>
+        <springfox.version>2.10.5</springfox.version>
         <jackson.version>2.11.2</jackson.version>
     </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<version>${spring-boot.version}</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring-boot.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -46,16 +46,16 @@
         </dependency>
 
         <dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox.version}</version>
-		</dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
@@ -82,32 +82,32 @@
         </dependency>
 
         <!-- test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${spring-boot.version}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot.version}</version>
-				<configuration>
-					<mainClass>com.tryton.small_world.server.ServerApplication</mainClass>
-					<layout>JAR</layout>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>com.tryton.small_world.server.ServerApplication</mainClass>
+                    <layout>JAR</layout>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
