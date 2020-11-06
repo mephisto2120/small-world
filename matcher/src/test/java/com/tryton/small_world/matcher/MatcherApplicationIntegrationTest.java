@@ -9,5 +9,4 @@ class MatcherApplicationIntegrationTest {
 	@Test
 	void contextLoads() {
 	}
-
 }
