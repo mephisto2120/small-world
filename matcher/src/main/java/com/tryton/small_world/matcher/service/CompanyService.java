@@ -50,18 +50,18 @@ public class CompanyService {
         companiesName.put("Charibdis", charibdis);
     }
 
-    public Set<Company> getByCriteria(CompanyCriteria CompanyCriteria) {
-        if (CompanyCriteria.getCustomerId() != null) {
-            if (companiesByCustomerId.containsKey(CompanyCriteria.getCustomerId())) {
-                return Collections.singleton(companiesByCustomerId.get(CompanyCriteria.getCustomerId()));
+    public Set<Company> getByCriteria(CompanyCriteria companyCriteria) {
+        if (companyCriteria.getCustomerId() != null) {
+            if (companiesByCustomerId.containsKey(companyCriteria.getCustomerId())) {
+                return Collections.singleton(companiesByCustomerId.get(companyCriteria.getCustomerId()));
             } else {
                 return Collections.emptySet();
             }
         }
 
-        if (CompanyCriteria.getName() != null) {
-            if (companiesName.containsKey(CompanyCriteria.getName())) {
-                return Collections.singleton(companiesName.get(CompanyCriteria.getName()));
+        if (companyCriteria.getName() != null) {
+            if (companiesName.containsKey(companyCriteria.getName())) {
+                return Collections.singleton(companiesName.get(companyCriteria.getName()));
             } else {
                 return Collections.emptySet();
             }
