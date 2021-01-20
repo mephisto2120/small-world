@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -27,28 +28,34 @@ class CompanyControllerIntegrationTest {
 
     @Test
     void shouldReturnNotFound() throws Exception {
-        mockMvc.perform(get("/company/get?customerId=-1"))
+        performGet("/company/get?customerId=-1")
             .andExpect(status().isNotFound());
     }
 
     @Test
     void shouldReturnCompanyByCustomerId() throws Exception {
-        mockMvc.perform(get("/company/get?customerId=123"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json"))
-            .andExpect(jsonPath("$.[0].customerId", is(123)))
-            .andExpect(jsonPath("$.[0].companyId", is(111)))
-            .andExpect(jsonPath("$.[0].name", is("Scylla")))
-            .andExpect(jsonPath("$.[0].city", is("New York")))
-            .andExpect(jsonPath("$.[0].street", is("Washington")))
-            .andExpect(jsonPath("$.[0].localNumber", is("24")))
-            .andExpect(jsonPath("$.[0].email", is("scylla@gmail.com")));
+        ResultActions resultActions = performGet("/company/get?customerId=123");
+        assertCompanyData(resultActions);
     }
 
     @Test
     void shouldReturnCompanyByName() throws Exception {
-        mockMvc.perform(get("/company/get?name=Scylla"))
-            .andExpect(status().isOk())
+        ResultActions resultActions = performGet("/company/get?name=Scylla");
+        assertCompanyData(resultActions);
+    }
+
+    @Test
+    void shouldReturnCompanyByCustomerIdAndName() throws Exception {
+        ResultActions resultActions = performGet("/company/get?customerId=123&name=Scylla");
+        assertCompanyData(resultActions);
+    }
+
+    private ResultActions performGet(String url) throws Exception {
+        return mockMvc.perform(get(url));
+    }
+
+    private void assertCompanyData(ResultActions resultActions) throws Exception {
+        resultActions.andExpect(status().isOk())
             .andExpect(content().contentType("application/json"))
             .andExpect(jsonPath("$.[0].customerId", is(123)))
             .andExpect(jsonPath("$.[0].companyId", is(111)))

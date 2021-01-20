@@ -28,56 +28,60 @@ class PersonControllerIntegrationTest {
 
     @Test
     void shouldReturnNotFoundWhenCustomerIdDoesNotExist() throws Exception {
-        mockMvc.perform(get("/person/get?customerId=-1"))
+        performGet("/person/get?customerId=-1")
             .andExpect(status().isNotFound());
     }
 
     @Test
     void shouldReturnNotFoundWhenFirstNameDoesNotExist() throws Exception {
-        mockMvc.perform(get("/person/get?firstName=Hikaru"))
+        performGet("/person/get?firstName=Hikaru")
             .andExpect(status().isNotFound());
     }
 
     @Test
     void shouldReturnNotFoundWhenLastNameDoesNotExist() throws Exception {
-        mockMvc.perform(get("/person/get?lastName=Nakamura"))
+        performGet("/person/get?lastName=Nakamura")
             .andExpect(status().isNotFound());
     }
 
     @Test
     void shouldReturnPersonByCustomerId() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/person/get?customerId=987"));
+        ResultActions resultActions = performGet("/person/get?customerId=987");
         assertPersonData(resultActions);
     }
 
     @Test
     void shouldReturnPersonByFirstName() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/person/get?firstName=John"));
+        ResultActions resultActions = performGet("/person/get?firstName=John");
         assertPersonData(resultActions);
     }
 
     @Test
     void shouldReturnPersonByLastName() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/person/get?lastName=Debtor"));
+        ResultActions resultActions = performGet("/person/get?lastName=Debtor");
         assertPersonData(resultActions);
     }
 
     @Test
     void shouldReturnPersonByCustomerIdAndLastName() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/person/get?customerId=987&lastName=Debtor"));
+        ResultActions resultActions = performGet("/person/get?customerId=987&lastName=Debtor");
         assertPersonData(resultActions);
     }
 
     @Test
     void shouldReturnPersonByCustomerIdFirstAndLastName() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/person/get?customerId=987&lastName=Debtor&firstName=John"));
+        ResultActions resultActions = performGet("/person/get?customerId=987&lastName=Debtor&firstName=John");
         assertPersonData(resultActions);
     }
 
     @Test
     void shouldReturnPersonByFirstAndLastName() throws Exception {
-        ResultActions resultActions = mockMvc.perform(get("/person/get?lastName=Debtor&firstName=John"));
+        ResultActions resultActions = performGet("/person/get?lastName=Debtor&firstName=John");
         assertPersonData(resultActions);
+    }
+
+    private ResultActions performGet(String url) throws Exception {
+        return mockMvc.perform(get(url));
     }
 
     private static ResultActions assertPersonData(ResultActions resultActions) throws Exception {
